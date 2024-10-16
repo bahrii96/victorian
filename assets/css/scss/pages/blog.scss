@@ -1,0 +1,124 @@
+.post-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.post-item {
+	    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #ddd;
+    width: calc(33.333% - 13.333px);
+    box-sizing: border-box;
+    transition: box-shadow 0.3s ease;
+}
+
+.post-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.post-thumbnail img {
+    max-width: 100%;
+    height: auto;
+}
+.post-content{
+	display:flex;
+	flex-direction:column;
+	height:100%;
+	padding: 15px;
+}
+
+.post-title {
+    font-size: 1.5em;
+    margin: 10px 0;
+    color: #000756; /* Основний колір */
+}
+
+.post-title a {
+    text-decoration: none;
+		transition: all 0.3s ease 0s;
+    color: #000756; /* Основний колір */
+}
+
+.post-title a:hover {
+    color: #f84a4b; /* Колір виділення */
+}
+
+.post-excerpt {
+    margin: 10px 0 15px;
+    color: #333;
+}
+
+
+.pagination {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.pagination a {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background: #000756; /* Основний колір */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+		transition: all 0.3s ease 0s;
+}
+
+.pagination a:hover {
+    background: #f84a4b; /* Колір виділення */
+}
+
+.post-thumbnail img{
+	height:210px;
+	width:100%;
+	object-fit:cover;
+}
+@media only screen and (max-width: 998px) {
+.post-item {
+    width: calc(50% - 10px);
+}
+}
+
+
+.single-post-container img{
+	max-height:440px;
+	object-fit:contain;
+	margin: 30px 0;
+}
+.post-content ul {
+    list-style: disc;
+    line-height: 1.85em;
+    margin: 10px 0 15px 20px;
+}
+.post-content ol {
+    list-style: auto;
+    line-height: 1.85em;
+    margin: 10px 0 15px 20px;
+}
+
+.post-content p {
+    margin-bottom: 0.8rem;
+	line-height:1.2;
+}
+
+h1{
+	text-align:center;
+	font-size:40px!important;
+	color:white!important;
+	margin-bottom:24px;
+}
+.post-meta {
+    text-align: center;
+}
+
+@media only screen and (max-width: 678px) {
+.post-item {
+    width: 100%;
+}
+	.post-thumbnail img{
+	height:150px;
+}
+
+}

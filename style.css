@@ -1,0 +1,94 @@
+/*
+Theme Name: Theme Onistudio
+Text Domain: screenshot-theme
+Version: 0.1
+Author: Onistudio developers
+*/
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+    overflow: auto;
+    display: block;
+}
+
+th,
+td {
+    padding: 12px 15px;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #252424;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #252424;
+}
+
+th {
+    text-align: center;
+}
+
+thead {
+    position: sticky;
+    top: 0;
+    background-color: #252424;
+    z-index: 1;
+}
+
+.scroll-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    z-index: 4;
+    font-style: normal;
+}
+
+.scroll-btn:hover {
+    opacity: 1;
+}
+
+.scroll-btn:active {
+    transform: scale(0.95);
+}
+.information-block img,
+.default-template img {
+    margin: 30px 0;
+}
+.information-block .aligncenter,
+.default-template .aligncenter {
+    margin: 30px auto;
+}
+
+.information-block .btn,
+.default-template .btn {
+    max-width: 350px;
+    width: 100%;
+    display: flex;
+    margin: 30px auto;
+    border-radius: 100px;
+}
+

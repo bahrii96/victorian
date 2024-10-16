@@ -1,0 +1,27 @@
+input[type="checkbox"] ~ label::before {
+	input[type="checkbox"] {
+		opacity: 0;
+	}
+}
+input[type="checkbox"] ~ label::before {
+	content: "";
+	text-align: center;
+	color: white;
+	line-height: 1em;
+	width: 1em;
+	height: 1em;
+	border: 2px inset #000;
+	border-radius: 0.25em;
+	margin: 0.15em;
+	display: inline-block;
+	margin-right: rem(5);
+}
+input[type="checkbox"]:checked ~ label::before {
+	content: "\2713";
+	color: red;
+	border: 2px inset red;
+}
+
+.breadcrumbs_inner__nav {
+	margin-bottom: rem(50);
+}

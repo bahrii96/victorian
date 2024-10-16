@@ -1,0 +1,354 @@
+@import '../inc/vars';
+
+body {
+    position: relative;
+    &.fixed {
+        overflow: hidden;
+    }
+
+    &.is-active {
+        header {
+            @include desktop-md {
+                overflow: visible;
+            }
+        }
+    }
+}
+
+.page-template-page-home {
+    .header {
+        position: fixed;
+        background: transparent;
+    }
+    .header.sticky {
+        position: fixed;
+        backdrop-filter: blur(60px);
+        box-shadow: 0px 0px 30px 0px #ffffff4d inset;
+        border-bottom: 2px solid #fff;
+    }
+}
+
+.header {
+    z-index: 10;
+    left: 0;
+    width: 100%;
+    top: 0;
+    transition: all 0.3s ease-in-out;
+    padding: rem(10) 0;
+    position: sticky;
+    box-sizing: border-box;
+background: #08161E;
+
+
+    @include desktop-md {
+        padding: rem(10) 0;
+    }
+    @include tablet-sm {
+        padding-top: rem(15);
+    }
+    &__list-btn {
+        @include tablet-sm {
+            order: 3;
+            width: 100%;
+        }
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: rem(24);
+        margin-left: auto;
+        .header__btn-first {
+            width: max-content;
+            @include tablet-sm {
+                width: 100%;
+            }
+            a {
+                justify-content: center;
+                width: 100%;
+            }
+        }
+        .header__btn-second {
+            width: max-content;
+            @include tablet-sm {
+                width: 100%;
+            }
+            a {
+                justify-content: center;
+                width: 100%;
+            }
+        }
+    }
+
+    @include desktop-md {
+        margin-bottom: rem(0);
+        position: sticky;
+    }
+    &.sticky {
+        position: sticky;
+    }
+
+    .container {
+        display: flex;
+        align-items: center;
+        gap: rem(15);
+        @include tablet-sm {
+            flex-wrap: wrap;
+        }
+    }
+
+    .logo {
+        position: relative;
+        z-index: 12;
+        margin-right: rem(15);
+        transition: all 0.3s ease 0s;
+        img {
+            max-width: rem(160);
+            @include desktop-md {
+                max-width: rem(140);
+                margin-right: rem(0);
+            }
+        }
+    }
+    nav {
+        display: flex;
+        gap: rem(24);
+        align-items: center;
+        ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: rem(20);
+            margin-bottom: 0;
+            margin-left: 0;
+
+            li {
+                display: inline-block;
+                position: relative;
+                line-height: 1em;
+                z-index: 2;
+
+                &.menu-item-has-children {
+                    display: flex;
+                    gap: rem(4);
+                    align-items: center;
+                    i {
+                        color: rgb(147, 147, 150);
+                        height: fit-content;
+                        transition: all 0.3s;
+                    }
+                    &:hover {
+                        i {
+                            transform: rotate(180deg);
+                        }
+                    }
+                }
+                a {
+                    display: inline-block;
+                    color: #f3f3f3;
+                    font-size: rem(16);
+                    line-height: 1.35;
+                    transition: all 0.3s;
+                    font-weight: 400;
+                    padding: rem(3);
+                    position: relative;
+                    text-transform: uppercase;
+                    font-style: italic;
+                    &:hover {
+                        opacity: 1;
+                        text-decoration: underline;
+                    }
+                }
+
+                ul {
+                    flex-direction: column;
+                    gap: 0;
+                    align-items: flex-start;
+                    position: absolute;
+                    z-index: 1;
+                    width: rem(240);
+                    visibility: hidden;
+                    opacity: 0;
+                    top: 100%;
+                    left: 0;
+                    padding-top: rem(12);
+                    background: #142840;
+
+                    li {
+                        display: block;
+                        color: $white;
+                        display: block;
+                        margin-bottom: 0;
+                        padding: rem(2) rem(8);
+                        text-align: left;
+                        text-transform: uppercase;
+                        width: 100%;
+                        &::after {
+                            display: none;
+                        }
+
+                        a {
+                            color: $white;
+                        }
+                    }
+
+                    .menu-item-has-children {
+                        position: relative;
+                        // Sub menu
+                        ul {
+                            display: none;
+                        }
+
+                        &:hover {
+                            > ul {
+                                display: block;
+                                top: 0;
+                                right: 0;
+                                bottom: auto;
+                                transform: translateX(100%);
+                                position: absolute;
+                                width: 100%;
+                                padding-top: 0;
+                                padding-bottom: 0;
+                            }
+                        }
+                        .icon {
+                            transform: translateY(-50%) rotate(-90deg);
+                        }
+                    }
+                }
+
+                &:hover {
+                    ul {
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
+            }
+        }
+    }
+
+    .menu-toggle {
+        visibility: visible;
+        opacity: 1;
+        position: relative;
+        width: rem(30);
+        height: rem(20);
+        display: none;
+        z-index: 99;
+        cursor: pointer;
+
+        &.is-active {
+            small {
+                transform: scale(0);
+            }
+
+            &::before {
+                transform: rotate(45deg);
+                top: rem(9);
+            }
+
+            &::after {
+                transform: rotate(-45deg);
+                bottom: rem(9);
+                width: 100%;
+            }
+        }
+
+        small {
+            margin-left: rem(15);
+            position: absolute;
+            background: rgb(255, 255, 255);
+            right: 0;
+            top: rem(9);
+            width: 60%;
+            height: 2px;
+            transition: all 0.1s;
+        }
+
+        &::before,
+        &::after {
+            content: '';
+            background: rgb(255, 255, 255);
+            position: absolute;
+            width: 100%;
+            height: rem(2);
+            right: 0;
+            transition: all 0.3s;
+        }
+
+        &::before {
+            top: 0;
+        }
+
+        &::after {
+            bottom: 0;
+            width: 100%;
+        }
+    }
+
+    @include desktop-md {
+        nav {
+            display: none;
+            position: absolute;
+            backdrop-filter: blur(40px);
+background: #08161E;
+
+            right: -100%;
+            top: 0;
+            height: fit-content;
+            z-index: 9;
+            padding-top: rem(120);
+            padding-left: rem(24);
+            padding-right: rem(24);
+            padding-bottom: rem(32);
+            overflow: auto;
+            transition: 0.3s ease-in-out;
+            width: 100%;
+            .btn {
+                margin-top: rem(30);
+            }
+
+            ul {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: rem(16);
+                li {
+                    transition: all 0.3s;
+                    flex-wrap: wrap;
+                    padding: 0;
+                    &:hover {
+                        .sub-menu {
+                            height: auto;
+                            margin-top: rem(8);
+                        }
+                    }
+                    a {
+                        padding: 0;
+                    }
+                    i {
+                        padding: rem(2) rem(4);
+                    }
+                    .sub-menu {
+                        position: relative;
+                        height: 0;
+                        padding: 0;
+                        width: 100%;
+                    }
+                }
+            }
+
+            &.is-active {
+                display: block;
+                right: 0;
+            }
+        }
+
+        .menu-toggle {
+            display: block;
+            @include tablet-sm {
+                margin-left: auto;
+            }
+        }
+    }
+}
+

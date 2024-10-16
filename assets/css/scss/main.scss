@@ -1,0 +1,91 @@
+@use 'inc' as *;
+
+html {
+    font-size: $bodyfontsize;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: $bodyfontsize;
+    font-family: 'Montserrat';
+    line-height: 1.4;
+    font-weight: 400;
+    color: #1f1d1e;
+}
+
+a {
+    color: #7d7679;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    &:hover {
+        opacity: 0.7;
+    }
+}
+main {
+    min-height: 86vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.default-template {
+    padding: clamp(rem(24), vw(32), rem(32)) 0;
+}
+
+.breadcrumb-block {
+    padding: clamp(rem(16), vw(20), rem(40)) 0 rem(16);
+}
+.form-block {
+    padding-top: clamp(rem(80), vw(160), rem(160));
+    position: relative;
+
+    &__box {
+        max-width: rem(800);
+        margin: auto;
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: rem(16);
+    }
+
+    &__desc {
+        text-align: center;
+        margin-bottom: clamp(rem(24), vw(40), rem(40));
+        font-size: clamp(rem(18), vw(24), rem(24));
+    }
+    .wpcf7-spinner {
+        display: none;
+    }
+
+    input[type='text'],
+    input[type='email'],
+    input[type='number'],
+    input[type='tel'],
+    input[type='password'],
+    textarea {
+        font-size: clamp(rem(16), vw(18), rem(18));
+        font-weight: 400;
+        border: 1px solid #dbd0d4;
+        padding: rem(18) rem(14);
+        width: 100%;
+        color: #1f1d1e;
+        margin-bottom: rem(16);
+        &::placeholder {
+            color: #1f1d1e;
+            font-size: clamp(rem(16), vw(18), rem(18));
+            font-weight: 400;
+        }
+    }
+}
+@import '_layout';
+@import 'ui/_button';
+@import 'ui/_headings';
+/* Default Page */
+// @import 'inc/_default-content';
+/* Form checkboxes  */
+// @import "inc/_checkboxes";
+// HEADER & FOOTER
+@import 'partials/header';
+@import 'partials/footer';
+

@@ -1,0 +1,43 @@
+.btn {
+    display: inline-flex;
+    color: #1f1d1e;
+    font-weight: 400;
+    font-size: clamp(rem(16), vw(18), rem(18));
+    text-transform: uppercase;
+    padding: rem(18) rem(36);
+    background: #fff;
+    transition: all 0.3s ease 0s;
+    background: #dbd0d4;
+    box-shadow: 2px 4px 4px 0px #00000040;
+    outline: none;
+		border:none;
+    &:hover {
+        background: #1f1d1e;
+        color: #dbd0d4;
+    }
+}
+
+.btn-sm {
+    display: inline-flex;
+    color: #000;
+    font-family: 'TT Squares', sans-serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(rem(16), vw(18), rem(18));
+    text-transform: uppercase;
+    padding: rem(10) rem(30);
+    background: #f3f3f3;
+    border-radius: rem(8);
+
+    color: #000;
+    transition: all 0.3s ease 0s;
+    border: none;
+    &:hover {
+        opacity: 0.7;
+    }
+    &.btn-tr {
+        background: #d79624;
+        color: white;
+    }
+}
+

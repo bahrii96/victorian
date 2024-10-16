@@ -1,0 +1,65 @@
+@import '../inc/vars';
+
+.contact-block {
+    padding-top: clamp(rem(24), vw(40), rem(40)) ;
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        @include tablet-smm {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__left {
+        background: #dbd0d4;
+    }
+    &__list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: rem(40);
+        padding: clamp(rem(32), vw(55), rem(55)) clamp(rem(24), vw(112), rem(112));
+        @include tablet-sm {
+            grid-template-columns: 1fr;
+            gap: rem(24);
+        }
+        h3 {
+            color: #1F1D1E;
+            font-size: clamp(rem(14), vw(18), rem(18));
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: rem(16);
+        }
+    }
+    &__office {
+        display: flex;
+        flex-direction: column;
+        gap: rem(8);
+    }
+    &__office-item {
+        display: flex;
+        align-items: center;
+        gap: rem(5);
+        a {
+            color: #1F1D1E;
+            font-size: clamp(rem(14), vw(18), rem(18));
+            font-weight: 400;
+        }
+        img {
+            width: rem(22);
+        }
+    }
+
+    &__right {
+        iframe {
+            width: 100%;
+            height: 100%;
+            @include tablet-smm {
+                height: rem(350);
+            }
+            @include tablet-sm {
+                height: rem(300);
+            }
+        }
+    }
+}
+

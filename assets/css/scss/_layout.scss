@@ -1,0 +1,11 @@
+.container {
+    max-width: $maxContainerWidth;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 rem(15);
+
+    @include tablet-md {
+        padding: 0 rem(15);
+    }
+}
+
