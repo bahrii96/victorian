@@ -288,8 +288,10 @@
             margin-bottom: 0;
             padding: rem(18) rem(36);
             border: 1px solid #dbd0d4;
+            text-align: center;
             @include tablet-sm {
                 padding: rem(14) rem(18);
+                flex: 1 1 auto;
             }
         }
     }

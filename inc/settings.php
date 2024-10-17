@@ -24,4 +24,9 @@ if (function_exists('acf_add_options_page')) {
 		'menu_title' => __('Form Global'),
 		'parent_slug' => $core_page['menu_slug'],
 	));
+	acf_add_options_sub_page(array(
+		'page_title' => __('Contactus Settings'),
+		'menu_title' => __('Contactus Settings'),
+		'parent_slug' => $core_page['menu_slug'],
+	));
 }

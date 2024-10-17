@@ -86,56 +86,45 @@
                 },
                 allowTouchMove: false,
             });
-				}
-			
-			    var swiper = new Swiper('.mySwiper3', {
-                    // loop: true,
-                    spaceBetween: 10,
-                    slidesPerView: 4,
-                    freeMode: true,
-                    watchSlidesProgress: true,
-                });
-                var swiper2 = new Swiper('.mySwiper2', {
-                    // loop: true,
-                    spaceBetween: 10,
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    },
-                    thumbs: {
-                        swiper: swiper,
-                    },
-								});
-			 $('[data-fancybox="gallery"]').fancybox({
-                 // Ваші налаштування тут
-                 loop: true, // Зациклення
-                 buttons: ['zoom', 'close'],
-             });
+        }
+
+        var swiper = new Swiper('.mySwiper3', {
+            // loop: true,
+            spaceBetween: 10,
+            slidesPerView: 4,
+            freeMode: true,
+            watchSlidesProgress: true,
+        });
+        var swiper2 = new Swiper('.mySwiper2', {
+            // loop: true,
+            spaceBetween: 10,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            thumbs: {
+                swiper: swiper,
+            },
+        });
+        $('[data-fancybox="gallery"]').fancybox({
+            loop: true,
+            buttons: ['zoom', 'close'],
+        });
+
+        if ($('.contactus-block__icon')) {
+            $('.contactus-block__icon').click(function () {
+                $(this).toggleClass('active');
+                $('.contactus-block__list').toggleClass('active');
+            });
+        }
     });
 })(jQuery);
 
 document.addEventListener(
     'wpcf7mailsent',
     function (event) {
-        var fancyboxInstance = $.fancybox.getInstance();
-
-        if (fancyboxInstance) {
-            fancyboxInstance.close(); // Закриваємо відкритий попап
-            $.fancybox.open({
-                src: '#popup-answer',
-                type: 'inline',
-                opts: {
-                    afterClose: function () {},
-                },
-            });
-        } else {
-            window.location.href = '/success';
-        }
+        window.location.href = '/success'; // URL сторінки, на яку хочете зробити редирект
     },
     false,
 );
-
-
-
-
 

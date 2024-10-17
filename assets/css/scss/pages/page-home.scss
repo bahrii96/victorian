@@ -72,7 +72,7 @@
         right: rem(15);
         top: 50%;
         transform: translateY(-50%);
-        z-index: 10;
+        z-index: 4;
         ul {
             list-style: none;
             display: flex;
@@ -262,6 +262,9 @@
             height: rem(400);
             object-fit: cover;
             width: 100%;
+            @include mobile-sm {
+                height: rem(320);
+            }
         }
     }
 
@@ -297,15 +300,19 @@
             margin-bottom: 0;
             padding: rem(18) rem(36);
             border: 1px solid #dbd0d4;
+            text-align: center;
+
             @include tablet-sm {
                 padding: rem(14) rem(18);
+                flex: 1 1 auto;
             }
         }
     }
 }
 
 .shop-block {
-    padding-bottom: clamp(rem(40), vw(80), rem(80));
+    padding-top: clamp(rem(80), vw(160), rem(160));
+    position: relative;
     h2 {
         text-align: center;
         margin-bottom: clamp(rem(24), vw(40), rem(40));
@@ -327,119 +334,35 @@
     &__item {
         position: relative;
         overflow: hidden;
-
+        transition: all 0.3s ease 0s;
         &:hover {
-            .shop-button-next,
-            .shop-button-prev {
-                opacity: 1;
-            }
-            .shop-block__item-wishlist {
-                z-index: 2;
-            }
+            transform: scale(1.02);
         }
-        &-img {
-            img {
-                object-fit: cover;
-                height: rem(700);
-                width: 100%;
-                @include tablet-md {
-                    height: rem(600);
-                }
-                @include tablet-smm {
-                    height: rem(500);
-                }
-                @include tablet-sm {
-                    height: rem(450);
-                }
-            }
-        }
+        img {
+            object-fit: cover;
+            height: rem(400);
+            width: 100%;
+            filter: brightness(0.5);
 
+            @include tablet-sm {
+                height: rem(300);
+            }
+            @include mobile-sm {
+                height: rem(200);
+            }
+        }
         h3 {
-            color: rgb(33, 33, 33);
-            font-size: clamp(rem(18), vw(24), rem(24));
-            font-weight: 400;
-            margin-bottom: rem(4);
-            text-align: center;
-            margin-top: rem(16);
-            text-transform: uppercase;
-        }
-
-        .shop-block__item-price {
-            text-align: center;
-            color: rgb(214, 172, 97);
-            font-size: clamp(rem(16), vw(18), rem(18));
-            font-weight: 400;
-        }
-    }
-
-    &__swiper {
-        position: relative;
-
-        .shop-button-next,
-        .shop-button-prev {
             position: absolute;
             top: 50%;
-            z-index: 10;
-            display: block;
-            outline: none;
-            border: none;
             transform: translateY(-50%);
-            img {
-                height: rem(80);
-                width: rem(40);
-                @include tablet-sm {
-                    height: rem(60);
-                    width: rem(30);
-                }
-            }
-            transition: all 0.3s ease 0s;
-            opacity: 0;
+            color: white;
+            font-size: clamp(rem(18), vw(32), rem(32));
+            font-weight: 400;
+            text-align: center;
+            text-transform: uppercase;
+            width: 100%;
+            left: 0;
         }
-        .shop-button-next {
-            right: rem(0);
-            left: auto;
-            // padding: 0;
-        }
-        .shop-button-prev {
-            left: rem(0);
-            // padding: 0;
-        }
-    }
-
-    .shop-block__item-wishlist {
-        position: absolute;
-        top: rem(20);
-        z-index: 0;
-        right: rem(4);
-        a {
-            display: flex;
-            align-items: center;
-            flex-direction: row-reverse;
-            gap: rem(12);
-        }
-        i {
-            box-sizing: border-box;
-            border: 1px solid rgb(214, 172, 97);
-            border-radius: 1000px;
-            background: rgb(255, 255, 255);
-            padding: 20px;
-            color: rgb(214, 172, 97);
-        }
-        span {
-            color: rgb(158, 158, 158);
-            font-size: clamp(rem(16), vw(18), rem(18));
-            font-weight: 300;
-            border-bottom: 1px solid rgb(238, 238, 238);
-            border-left: 1px solid rgb(238, 238, 238);
-            border-right: 1px solid rgb(238, 238, 238);
-            background: rgb(255, 255, 255);
-            padding: rem(12) rem(16);
-        }
-    }
-
-    &__btn {
-        margin-top: clamp(rem(24), vw(40), rem(40));
-        text-align: center;
     }
 }
 

@@ -41,7 +41,7 @@ if ($main_template) {
 									</div>
 									<?php if ($button) : ?>
 										<div class="hero-block__btn">
-											<?php echo initLinkHref($button, 'btn') ?>
+											<?php echo initLinkHref($button, 'btn', true) ?>
 										</div>
 									<?php endif; ?>
 								</div>
@@ -102,6 +102,53 @@ if ($main_template) {
 		</section>
 	<?php endif; ?>
 
+	<?php if ($category_group) :
+		$title = $category_group['title'];
+		$block_id = $category_group['block_id'];
+	?>
+		<section class="category-block" id="<?php echo $block_id  ?>">
+			<div class="container">
+				<?php if ($title) : ?>
+					<h2><?php echo $title ?></h2>
+				<?php endif; ?>
+
+				<div class="category-block__list">
+					<?php
+					$product_categories = get_terms('product_cat', array(
+						'orderby'    => 'name',
+						'order'      => 'ASC',
+						'hide_empty' => true,
+					));
+
+					if (!empty($product_categories) && !is_wp_error($product_categories)) {
+						foreach ($product_categories as $category) {
+							$thumbnail_id = get_term_meta($category->term_id, 'thumbnail_id', true);
+							$image_url = wp_get_attachment_url($thumbnail_id);
+							$name = $category->name;
+							$count = $category->count;
+							$category_link = get_term_link($category);
+							if ($image_url) {
+								$image_tag = '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($name) . '">';
+							} else {
+								$image_tag = '<img src="' . esc_url(wc_placeholder_img_src()) . '" alt="' . esc_attr($name) . '">';
+							}
+					?>
+							<a href="<?php echo esc_url($category_link); ?>" class="single-category">
+								<div class="category-block__img">
+									<?php echo $image_tag; ?>
+								</div>
+								<h3><?php echo esc_html($name); ?></h3>
+							</a>
+					<?php
+						}
+					}
+					?>
+				</div>
+
+			</div>
+		</section>
+	<?php endif; ?>
+
 	<?php if ($works_group) :
 		$title = $works_group['title'];
 		$list = $works_group['list'];
@@ -129,51 +176,35 @@ if ($main_template) {
 		</section>
 	<?php endif; ?>
 
-	<?php if ($category_group) :
-		$title = $category_group['title'];
-		$block_id = $category_group['block_id'];
+
+	<?php if ($popular_group) :
+		$block_id = $popular_group['block_id'];
+		$title = $popular_group['title'];
+		$products = $popular_group['products'];
 	?>
-		<section class="category-block" id="<?php echo $block_id  ?>">
+		<section class="shop-block" id="<?php echo $block_id  ?>">
 			<div class="container">
 				<?php if ($title) : ?>
-					<h2><?php echo $title ?></h2>
+					<h2>
+						<?php echo $title ?>
+					</h2>
 				<?php endif; ?>
-
-				<div class="category-block__list">
+				<div class="shop-block__list">
 					<?php
-					$product_categories = get_terms('product_cat', array(
-						'orderby'    => 'name',
-						'order'      => 'ASC',
-						'hide_empty' => true,
-					));
-
-					if (!empty($product_categories) && !is_wp_error($product_categories)) {
-						foreach ($product_categories as $category) {
-							$thumbnail_id = get_term_meta($category->term_id, 'thumbnail_id', true);
-							$image_url = wp_get_attachment_url($thumbnail_id);
-							$name = $category->name;
-							$count = $category->count;
-							$category_link = get_term_link($category);
-
-							// Перевірка, чи є зображення категорії. Якщо немає, використовуємо заглушку WooCommerce
-							if ($image_url) {
-								$image_tag = '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($name) . '">';
-							} else {
-								$image_tag = '<img src="' . esc_url(wc_placeholder_img_src()) . '" alt="' . esc_attr($name) . '">';
-							}
+						$posts = new WP_Query(array(
+							'post_type' => 'product',
+							'posts_per_page' => -1,
+							'post_status'    => 'publish',
+							'post__in' => $products,
+							'orderby' => 'post__in',
+						));
 					?>
-							<a href="<?php echo esc_url($category_link); ?>" class="single-category">
-								<div class="category-block__img">
-									<?php echo $image_tag; ?>
-								</div>
-								<h3><?php echo esc_html($name); ?></h3>
-							</a>
-					<?php
-						}
-					}
-					?>
+						<?php if ($posts) : ?>
+							<?php
+							initPostsViewPortfolio($posts, 'post-templates/post-item');
+							?>
+						<?php endif; ?>
 				</div>
-
 			</div>
 		</section>
 	<?php endif; ?>
@@ -234,161 +265,6 @@ if ($main_template) {
 
 
 
-	<?php if ($collection_group) :
-		$block_id = $collection_group['block_id'];
-		$title = $collection_group['title'];
-		$list_product = $collection_group['list_product'];
-	?>
-		<section class="shop-block" id="<?php echo $block_id  ?>">
-			<div class="container">
-				<?php if ($title) : ?>
-					<h2>
-						<?php echo $title ?>
-					</h2>
-				<?php endif; ?>
-				<div class="row collection-row">
-					<?php
-					foreach ($list_product as $item) {
-						$products = $item['products'];
-						$posts = new WP_Query(array(
-							'post_type' => 'product',
-							'posts_per_page' => -1,
-							'post_status'    => 'publish',
-							'post__in' => $products,
-							'orderby' => 'post__in',
-						));
-					?>
-						<?php if ($posts) : ?>
-							<?php
-							initPostsViewPortfolio($posts, 'post-templates/post-item-col');
-							?>
-						<?php endif; ?>
-					<?php
-					} ?>
-				</div>
-			</div>
-		</section>
-	<?php endif; ?>
-	<?php if ($shop_group) :
-		$block_id = $shop_group['block_id'];
-		$title = $shop_group['title'];
-		$list_product = $shop_group['list_product'];
-		$button = $shop_group['button'];
-	?>
-		<section class="shop-block" id="<?php echo $block_id  ?>">
-			<div class="container">
-				<?php if ($title) : ?>
-					<h2>
-						<?php echo $title ?>
-					</h2>
-				<?php endif; ?>
-				<div class="shop-block__list">
-					<?php
-					foreach ($list_product as $item) {
-						$products = $item['products'];
-						$posts = new WP_Query(array(
-							'post_type' => 'product',
-							'posts_per_page' => -1,
-							'post_status'    => 'publish',
-							'post__in' => $products,
-							'orderby' => 'post__in',
-						));
-					?>
-						<?php if ($posts) : ?>
-							<?php
-							initPostsViewPortfolio($posts, 'post-templates/post-item');
-							?>
-						<?php endif; ?>
-					<?php
-					} ?>
-				</div>
-				<?php if ($button) : ?>
-					<div class="shop-block__btn">
-						<?php echo initLinkHref($button, 'btn') ?>
-					</div>
-				<?php endif; ?>
-			</div>
-		</section>
-	<?php endif; ?>
 
-	<?php if ($certificate_group) :
-		$block_id = $certificate_group['block_id'];
-		$image = $certificate_group['image'];
-		$caption = $certificate_group['caption'];
-		$title = $certificate_group['title'];
-		$description = $certificate_group['description'];
-		$button = $certificate_group['button'];
-	?>
-		<section class="certificate-block" id="<?php echo $block_id  ?>">
-			<div class="container">
-				<div class="certificate-block__box">
-					<div class="certificate-block__left">
-						<?php echo wp_get_attachment_image($image, 'full'); ?>
-					</div>
-					<div class="certificate-block__right">
-						<?php if ($caption) : ?>
-							<div class="certificate-block__caption">
-								<?php echo $caption ?>
-							</div>
-						<?php endif; ?>
-						<?php if ($title) : ?>
-							<h2>
-								<?php echo $title ?>
-							</h2>
-						<?php endif; ?>
-						<?php if ($description) : ?>
-							<div class="certificate-block__desc ">
-								<?php echo $description ?>
-							</div>
-						<?php endif; ?>
-						<?php if ($button) : ?>
-							<div class="certificate-block__btn">
-								<?php echo initLinkHref($button, 'btn') ?>
-							</div>
-						<?php endif; ?>
-					</div>
-				</div>
-			</div>
-		</section>
-	<?php endif; ?>
-
-	<?php if ($gallery_group) :
-		$block_id = $gallery_group['block_id'];
-		$list = $gallery_group['list'];
-
-	?>
-		<section class="gallery-block" id="<?php echo $block_id  ?>">
-			<div class="gallery-block__box">
-				<?php if (is_array($list)) : ?>
-					<?php foreach ($list as $item) {
-						$image = $item['image'];
-					?>
-						<div class="gallery-block__item">
-							<?php echo wp_get_attachment_image($image, 'full'); ?>
-						</div>
-					<?php } ?>
-				<?php endif; ?>
-			</div>
-		</section>
-	<?php endif; ?>
-
-	<?php if ($mission_group) :
-		$block_id = $mission_group['block_id'];
-		$title = $mission_group['title'];
-		$description = $mission_group['description'];
-	?>
-		<section class="mission-block" id="<?php echo $block_id ?>">
-			<div class=" container">
-				<?php if ($title) : ?>
-					<h2><?php echo $title ?></h2>
-				<?php endif; ?>
-				<?php if ($description) : ?>
-					<div class="mission-block__desc">
-						<?php echo $description ?>
-					</div>
-				<?php endif; ?>
-			</div>
-		</section>
-	<?php endif; ?>
 </main>
 <?php get_footer(); ?>

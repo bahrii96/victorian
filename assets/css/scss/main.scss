@@ -33,8 +33,9 @@ main {
     padding: clamp(rem(24), vw(32), rem(32)) 0;
 }
 
-.breadcrumb-block {
-    padding: clamp(rem(16), vw(20), rem(40)) 0 rem(16);
+.breadcrumb-block ,.woocommerce-breadcrumb{
+    padding: clamp(rem(16), vw(20), rem(40)) 0 rem(16)!important;
+		margin: 0!important;
 }
 .form-block {
     padding-top: clamp(rem(80), vw(160), rem(160));
@@ -77,6 +78,12 @@ main {
             font-weight: 400;
         }
     }
+}
+
+.fancybox-content {
+	@include tablet-sm {
+		padding: rem(24)!important;
+	}
 }
 @import '_layout';
 @import 'ui/_button';

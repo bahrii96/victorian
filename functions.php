@@ -24,6 +24,7 @@ if (!defined('ABSPATH')) {
 
 register_nav_menus(array(
 	'primary_left' => __('Primary Menu'),
+	'primary_category' => __('Category Menu'),
 ));
 
 

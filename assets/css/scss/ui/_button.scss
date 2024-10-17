@@ -17,27 +17,4 @@
     }
 }
 
-.btn-sm {
-    display: inline-flex;
-    color: #000;
-    font-family: 'TT Squares', sans-serif;
-    font-style: italic;
-    font-weight: 700;
-    font-size: clamp(rem(16), vw(18), rem(18));
-    text-transform: uppercase;
-    padding: rem(10) rem(30);
-    background: #f3f3f3;
-    border-radius: rem(8);
-
-    color: #000;
-    transition: all 0.3s ease 0s;
-    border: none;
-    &:hover {
-        opacity: 0.7;
-    }
-    &.btn-tr {
-        background: #d79624;
-        color: white;
-    }
-}
 

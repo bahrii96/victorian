@@ -133,12 +133,23 @@
             height: 100%;
             display: flex;
         }
+
+        .wp-post-image {
+            object-fit: cover;
+						max-width: rem(700);
+						width: 100%;
+						max-height: rem(700);
+						height: 100%;
+						@include tablet-sm {
+								max-height: rem(300);
+						}
+        }
     }
 }
 .information-block,
 .about-block,
 .form-block {
-    padding-top: clamp(rem(40), vw(80), rem(80))!important;
+    padding-top: clamp(rem(40), vw(80), rem(80)) !important;
 }
 .material-block {
     margin-top: clamp(rem(24), vw(40), rem(40));
