@@ -12,7 +12,6 @@ if ($page_success) {
 
 	<section class="success-block">
 		<div class="container">
-
 			<?php if ($title): ?>
 				<h1><?php echo $title ?></h1>
 			<?php endif; ?>
